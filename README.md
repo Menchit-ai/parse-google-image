@@ -38,3 +38,7 @@ damaged/damaged_apple_fruit/damaged_apple_fruit(1).jpg downloaded !
 damaged/damaged_apple_fruit/damaged_apple_fruit(2).jpg downloaded !
 damaged/damaged_apple_fruit/damaged_apple_fruit(3).jpg downloaded !
 ```
+## Ways of improvements
+
+For now, the scrolling is overkill and want to load all the images possible without clicking on "show more results" but we can try to scroll the least possible.
+Not all the images are downloaded : the urls are handle without problem but some format may cause issues. For example, the **data:image/jpeg;base64** is handled but some other format are not.
