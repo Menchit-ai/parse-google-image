@@ -10,7 +10,11 @@ To setup the environment, simply run **pip install** -r **requirements**.**txt**
 ## Using command line
 
 To launch the script, use the following command : **python parse_google_image.py [query] [nb_of_images]**
-For example : **python parse_google_image.py "damaged apple fruit" 4** will give me the first 4 images that we can obtains typing damaged apple fruit in google image.
+For example : 
+
+**python parse_google_image.py "damaged apple fruit" 4** 
+
+will give me the first 4 images that we can obtains typing damaged apple fruit in google image.
 
 ## Choose your directory
 
@@ -24,7 +28,9 @@ By default, the script will download your images in a folder that has the same n
 |   |	+-- damaged_apple_fruit(3).jpg
 |   |	+-- damaged_apple_fruit(4).jpg
 ```
-You can use any folder as you want to replace the **dataset** using the option --directory or -d in the command. For example, if I want to store my data inside a **damaged** folder, I can use the command  : **python parse_google_image.py "damaged apple fruit" 4 --directory damaged**
+You can use any folder as you want to replace the **dataset** using the option --directory or -d in the command. For example, if I want to store my data inside a **damaged** folder, I can use the command  : 
+
+**python parse_google_image.py "damaged apple fruit" 4 --directory damaged**
 
 ## Verbosity
 
