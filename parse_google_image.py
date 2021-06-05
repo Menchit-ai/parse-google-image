@@ -39,7 +39,7 @@ def main():
 
 def scroll(driver):
     SCROLL_PAUSE_TIME = 2
-    
+   
     # Get scroll height
     last_height = driver.execute_script("return document.body.scrollHeight")
 
@@ -63,32 +63,42 @@ def load_page(driver, nb_scroll):
             show_more = driver.find_elements_by_class_name("mye4qd")
             show_more[0].click()
         except ElementNotInteractableException as e : return i
-        
-def download_urls(urls,text,number):
-    if len(urls) < number: number = len(urls)
+       
+def download_elements(elements,text,number,driver):
+    if len(elements) < number: number = len(elements)
     cpt = 0
     i = 0
     while(cpt < number):
-        cpt += download_url(urls[i],text,cpt)
+        e = elements[i]
+        e.click()
+        try:
+            image = driver.find_element_by_xpath("/html/body/div[2]/c-wiz/div[4]/div[2]/div[3]/div/div/div[3]/div[2]/c-wiz/div/div[1]/div[1]/div/div[2]/a/img")
+            url = image.get_attribute("src")
+            name = str(image.get_attribute("alt"))
+            name = name.replace(" ","_")
+            name = "".join([character for character in name if character.isalnum()])
+       
+            cpt += download_url(url,text+"/"+name,cpt)
+        except Exception as e:
+            if full_v : print(e)
         i += 1
-        if i==len(urls): return cpt
+        if i==len(elements): return cpt
     return cpt
-                
+               
 def download_url(url,text,_id):
-    filename = download_path+text+"/"+text+"("+str(_id)+").jpg"
+    filename = download_path+text+".jpg"
     try:
-        if "data:image/jpeg;base64" in url:
-            z = url[url.find('/9'):]
-            im = Image.open(io.BytesIO(base64.b64decode(z))).save(filename)
-        else:
-            img_data = requests.get(url).content
-            with open(filename, 'wb') as handler:
-                handler.write(img_data)
-        if full_v : print(filename + " downloaded !")
+        img_data = requests.get(url).content
+        with open(filename, 'wb') as handler:
+            handler.write(img_data)
+        if full_v : print(os.path.basename(filename) + " downloaded !")
         return 1
-    except : return 0
-                
-                
+    except Exception as e:
+        if full_v : print(e)
+        elif v : print("Cant download",os.path.basename(filename))
+        return 0
+               
+               
 def search_and_save(text, number,download_path):
     # Number_of_scrolls * 400 images will be opened in the browser
     number_of_scrolls = floor(number/ 400) +1
@@ -101,8 +111,10 @@ def search_and_save(text, number,download_path):
     headers = {}
     headers['User-Agent'] = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
     extensions = {"jpg", "jpeg", "png", "gif"}
-        
+       
     load_page(driver,number_of_scrolls)
+    if full_v : print("\nPage loaded")
+
 
     download_path = download_path.replace(" ", "_")
     text = text.replace(" ", "_")
@@ -113,10 +125,10 @@ def search_and_save(text, number,download_path):
     if not os.path.exists(download_path + text):
         os.makedirs(download_path + text)
 
+   
     elements = driver.find_elements_by_xpath("//img[@class='rg_i Q4LuWd']")
-    urls = [i.get_attribute("src") for i in elements]
+    downloaded = download_elements(elements,text,number,driver)
     driver.quit()
-    downloaded = download_urls(urls,text,number)
 
     if v : print("Total downloaded : "+ str(downloaded)+ "/"+ str(number)+"\n")
 
