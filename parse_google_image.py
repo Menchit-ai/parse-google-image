@@ -73,7 +73,7 @@ def download_elements(elements,text,number,driver):
         e = elements[i]
         e.click()
         try:
-            image = driver.find_element_by_xpath("/html/body/div[2]/c-wiz/div[4]/div[2]/div[3]/div/div/div[3]/div[2]/c-wiz/div/div[1]/div[1]/div/div[2]/a/img")
+            image = driver.find_element_by_xpath("/html/body/div[2]/c-wiz/div[4]/div[2]/div[3]/div/div/div[3]/div[2]/c-wiz/div/div[1]/div[1]/div[2]/div[1]/a/img")
             url = image.get_attribute("src")
             name = str(image.get_attribute("alt"))
             name = name.replace(" ","_")

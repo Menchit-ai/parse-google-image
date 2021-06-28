@@ -737,3 +737,14 @@ JavaScript error: , line 0: uncaught exception: Object
 ###!!! [Parent][RunMessage] Error: Channel error: cannot send/recv
 
 1624875521251	Marionette	INFO	Stopped listening on port 60335
+1624875617133	geckodriver	INFO	Listening on 127.0.0.1:65456
+1624875620183	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\thoma\\AppData\\Local\\Temp\\rust_mozprofiletSWWAJ"
+*** You are running in headless mode.
+1624875620453	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1624875621186	Marionette	INFO	Listening on port 59997
+1624875621232	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: , line 0: uncaught exception: Object
+JavaScript error: , line 0: uncaught exception: Object
