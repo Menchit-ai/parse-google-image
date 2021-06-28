@@ -25,6 +25,7 @@ args = parser.parse_args()
 
 # adding path to geckodriver to the OS environment variable
 os.environ["PATH"] += os.pathsep + os.getcwd()
+os.environ['MOZ_HEADLESS'] = '1'
 
 # Configuration
 download_path = args.directory+"/"
@@ -115,7 +116,7 @@ def search_and_save(text, number,download_path):
     load_page(driver,number_of_scrolls)
     if full_v : print("\nPage loaded")
 
-
+    print("Starting download")
     download_path = download_path.replace(" ", "_")
     text = text.replace(" ", "_")
     # Create directories to save images
